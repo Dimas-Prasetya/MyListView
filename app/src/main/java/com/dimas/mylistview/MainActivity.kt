@@ -3,9 +3,9 @@ package com.dimas.mylistview
 import android.content.res.TypedArray
 import android.os.Bundle
 import android.widget.AdapterView
-import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,27 +15,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var dataPhoto: TypedArray
     private var heroes = arrayListOf<Hero>()
 
-    /*private val dataName = arrayOf(
-        "Cut Nyak Dien",
-        "Ki Hajar Dewantara",
-        "Moh Yamin",
-        "Patimura",
-        "R A Kartini",
-        "Sukarno"
-    )*/
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val listView: ListView = findViewById(R.id.lv_list)
         adapter = HeroAdapter(this)
-        listView.adapter = adapter
+        lv_list.adapter = adapter
 
         prepare()
         addItem()
 
-        listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+        lv_list.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             Toast.makeText(this@MainActivity, heroes[position].name, Toast.LENGTH_SHORT).show()
         }
     }
